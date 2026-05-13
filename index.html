@@ -179,6 +179,10 @@
           linear-gradient(145deg, var(--paper-deep), #c9d0c0 58%, #d2b7a8);
       }
 
+      .contact-section {
+        position: relative;
+      }
+
       .contact-section a,
       .contact-section p {
         margin: 0;
@@ -293,6 +297,65 @@
         margin-top: 46px;
       }
 
+      .site-footer {
+        position: absolute;
+        right: clamp(38px, 7vw, 96px);
+        bottom: clamp(32px, 5vw, 56px);
+        left: clamp(38px, 7vw, 96px);
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(23, 22, 20, 0.14);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .social-link {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(23, 22, 20, 0.16);
+        border-radius: 6px;
+        color: var(--ink);
+        background: rgba(255, 250, 244, 0.42);
+        text-decoration: none;
+        transition:
+          border-color 180ms ease,
+          color 180ms ease,
+          background 180ms ease;
+      }
+
+      .social-link:hover {
+        border-color: rgba(155, 106, 85, 0.5);
+        color: var(--clay);
+        background: rgba(255, 250, 244, 0.7);
+      }
+
+      .social-link svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .company-meta {
+        display: grid;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        letter-spacing: 0;
+        text-align: right;
+      }
+
+      .copyright {
+        letter-spacing: 0;
+      }
+
       .brand-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(220px, 320px));
@@ -366,6 +429,17 @@
         .home-brand-strip {
           position: static;
           justify-content: flex-start;
+        }
+
+        .site-footer {
+          position: static;
+          display: grid;
+          margin-top: 42px;
+          padding-top: 20px;
+        }
+
+        .company-meta {
+          text-align: left;
         }
       }
     </style>
@@ -471,10 +545,36 @@
           <a class="cta" href="mailto:chatty@houseofchatty.co.uk">Get in touch</a>
           <div class="details">
             <a href="mailto:chatty@houseofchatty.co.uk">chatty@houseofchatty.co.uk</a>
-            <a href="https://houseofchatty.co.uk">houseofchatty.co.uk</a>
-            <p>London, UK</p>
           </div>
         </div>
+        <footer class="site-footer" aria-label="Company footer">
+          <div class="social-links" aria-label="Social links">
+            <a
+              class="social-link"
+              href="https://www.instagram.com/house_of_chatty/"
+              aria-label="House of Chatty on Instagram"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8" />
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" />
+                <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+              </svg>
+            </a>
+            <a class="social-link" href="#" aria-label="House of Chatty on LinkedIn">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M6.8 9.4V18" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" />
+                <path d="M11 18V9.4" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" />
+                <path d="M11 13.1C11 10.9 12.3 9.2 14.6 9.2C16.8 9.2 18 10.7 18 13.4V18" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" />
+                <circle cx="6.8" cy="6.4" r="1.3" fill="currentColor" />
+              </svg>
+            </a>
+          </div>
+          <div class="company-meta">
+            <span class="copyright">&copy; 2026 House of Chatty. All rights reserved.</span>
+            <span>Company No. TBC</span>
+            <span>VAT No. TBC</span>
+          </div>
+        </footer>
       </section>
     </main>
     <script>
