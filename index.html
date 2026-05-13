@@ -30,7 +30,7 @@
 
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 0;
+        scroll-padding-top: 68px;
         scroll-snap-type: y proximity;
       }
 
@@ -394,6 +394,10 @@
       }
 
       @media (max-width: 760px) {
+        html {
+          scroll-padding-top: 108px;
+        }
+
         .page-section {
           min-height: calc(100svh - 108px);
           padding: 34px 22px;
