@@ -30,7 +30,8 @@
 
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 76px;
+        scroll-padding-top: 0;
+        scroll-snap-type: y proximity;
       }
 
       body {
@@ -65,13 +66,23 @@
       }
 
       .header-mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
         color: var(--ink);
         font-size: 0.86rem;
-        font-weight: 700;
+        font-weight: 400;
         letter-spacing: 0.2em;
         text-decoration: none;
         text-transform: uppercase;
         white-space: nowrap;
+      }
+
+      .header-mark img {
+        width: 28px;
+        height: 34px;
+        object-fit: contain;
+        opacity: 0.9;
       }
 
       .nav-links {
@@ -107,6 +118,11 @@
         color: var(--ink);
       }
 
+      .nav-links a[aria-current="page"] {
+        background: rgba(23, 22, 20, 0.08);
+        color: var(--ink);
+      }
+
       main {
         min-height: 100vh;
       }
@@ -114,6 +130,9 @@
       .page-section {
         min-height: calc(100vh - 68px);
         padding: clamp(42px, 6vw, 84px) clamp(38px, 7vw, 96px);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        scroll-margin-top: 0;
         border-bottom: 1px solid rgba(23, 22, 20, 0.1);
         background:
           radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.62), transparent 28rem),
@@ -131,7 +150,7 @@
       }
 
       .house-logo {
-        width: min(100%, 420px);
+        width: min(100%, 540px);
         height: auto;
         mix-blend-mode: multiply;
       }
@@ -264,8 +283,8 @@
       }
 
       .home-brand-link--round img {
-        max-width: 58px;
-        max-height: 40px;
+        max-width: 76px;
+        max-height: 48px;
       }
 
       .details {
@@ -315,6 +334,8 @@
         .page-section {
           min-height: calc(100vh - 62px);
           padding: 34px 22px;
+          scroll-snap-align: start;
+          scroll-margin-top: 0;
         }
 
         .header-inner {
@@ -352,9 +373,12 @@
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a class="header-mark" href="#home">House of Chatty</a>
+        <a class="header-mark" href="#home">
+          <img src="assets/favicon-tree-512.png" alt="" width="512" height="512" />
+          <span>House of Chatty</span>
+        </a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#home">Home</a>
+          <a href="#home" aria-current="page">Home</a>
           <a href="#brands">Brands</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -382,7 +406,7 @@
                 aria-label="Susan Deliss"
               >
                 <img
-                  src="assets/susan-deliss-logo.jpg"
+                  src="assets/susan-deliss-logo-cropped.png"
                   alt="Susan Deliss logo"
                   width="190"
                   height="190"
@@ -453,5 +477,63 @@
         </div>
       </section>
     </main>
+    <script>
+      const navItems = document.querySelectorAll(".nav-links a");
+      const sections = document.querySelectorAll(".page-section[id]");
+      const header = document.querySelector(".site-header");
+
+      function setActiveNav(id) {
+        navItems.forEach((item) => {
+          const isActive = item.getAttribute("href") === `#${id}`;
+          if (isActive) {
+            item.setAttribute("aria-current", "page");
+          } else {
+            item.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      function updateActiveFromScroll() {
+        const headerHeight = header ? header.offsetHeight : 0;
+        const marker = headerHeight + 8;
+        let current = sections[0];
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= marker && rect.bottom > marker) {
+            current = section;
+          }
+        });
+
+        if (current) {
+          setActiveNav(current.id);
+        }
+      }
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", (event) => {
+          const hash = item.getAttribute("href");
+          const id = hash.slice(1);
+          const section = document.getElementById(id);
+          if (!section) return;
+
+          event.preventDefault();
+          setActiveNav(id);
+          history.pushState(null, "", hash);
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+
+      if (window.location.hash) {
+        setActiveNav(window.location.hash.slice(1));
+      }
+
+      window.addEventListener("hashchange", () => {
+        setActiveNav(window.location.hash.slice(1));
+      });
+
+      window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+      window.addEventListener("load", updateActiveFromScroll);
+    </script>
   </body>
 </html>
