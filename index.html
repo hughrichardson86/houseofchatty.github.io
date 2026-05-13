@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="House of Chatty is a simple landing page and business card."
+    />
+    <title>House of Chatty</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #171614;
+        --muted: #635f59;
+        --paper: #f7f3ed;
+        --line: #d9d0c4;
+        --accent: #d94e35;
+        --accent-dark: #a33123;
+        --green: #1d6f59;
+        --white: #fffaf3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at 12% 20%, rgba(217, 78, 53, 0.14), transparent 24rem),
+          linear-gradient(135deg, var(--paper), #efe7dc 58%, #e2eadf);
+      }
+
+      main {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+      }
+
+      .business-card {
+        width: min(100%, 920px);
+        min-height: 520px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        overflow: hidden;
+        border: 1px solid rgba(23, 22, 20, 0.12);
+        border-radius: 8px;
+        background: rgba(255, 250, 243, 0.9);
+        box-shadow: 0 24px 70px rgba(35, 29, 23, 0.18);
+      }
+
+      .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 48px;
+        padding: clamp(32px, 6vw, 72px);
+      }
+
+      .mark {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        color: var(--white);
+        background: var(--ink);
+        font-size: 0.95rem;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        max-width: 8ch;
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(4rem, 11vw, 8.5rem);
+        line-height: 0.86;
+        letter-spacing: 0;
+      }
+
+      .tagline {
+        max-width: 34rem;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.1rem, 2vw, 1.35rem);
+        line-height: 1.5;
+      }
+
+      .contact {
+        display: grid;
+        gap: 14px;
+        align-content: end;
+        padding: clamp(32px, 5vw, 56px);
+        color: var(--white);
+        background:
+          linear-gradient(rgba(23, 22, 20, 0.34), rgba(23, 22, 20, 0.34)),
+          linear-gradient(160deg, var(--green), #223f36 58%, var(--accent-dark));
+      }
+
+      .contact h2 {
+        margin: 0 0 22px;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .contact a,
+      .contact p {
+        margin: 0;
+        color: inherit;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.45;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 5px;
+      }
+
+      .contact a:hover {
+        color: #ffe2d8;
+      }
+
+      .availability {
+        width: fit-content;
+        margin-top: 28px;
+        padding: 10px 14px;
+        border: 1px solid rgba(255, 250, 243, 0.36);
+        border-radius: 999px;
+        color: #fff0e9;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 760px) {
+        main {
+          padding: 18px;
+        }
+
+        .business-card {
+          min-height: auto;
+          grid-template-columns: 1fr;
+        }
+
+        .intro {
+          min-height: 58vh;
+        }
+
+        .contact {
+          min-height: 34vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <article class="business-card" aria-label="House of Chatty business card">
+        <section class="intro">
+          <div class="mark" aria-hidden="true">HC</div>
+          <div>
+            <h1>House of Chatty</h1>
+            <p class="tagline">
+              Friendly words, sharp ideas, and practical support for people who
+              want their message to land clearly.
+            </p>
+          </div>
+        </section>
+
+        <section class="contact" aria-label="Contact details">
+          <div>
+            <h2>Business Card</h2>
+            <p>Conversation-first creative services.</p>
+          </div>
+          <a href="mailto:hello@houseofchatty.com">hello@houseofchatty.com</a>
+          <a href="https://houseofchatty.github.io">houseofchatty.github.io</a>
+          <p>London, UK</p>
+          <p class="availability">Open for collaborations</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
